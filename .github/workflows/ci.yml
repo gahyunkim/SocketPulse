@@ -1,0 +1,30 @@
+name: ci
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test-and-verify:
+    name: Build and Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Run Linters & Tests
+        run: ./gradlew check
+
+      - name: Verify Plugin
+        run: ./gradlew verifyPlugin
+
+      - name: Build Plugin
+        run: ./gradlew buildPlugin
