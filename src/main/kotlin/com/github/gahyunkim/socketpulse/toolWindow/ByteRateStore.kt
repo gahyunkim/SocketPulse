@@ -4,6 +4,7 @@ class ByteRateStore(
     private val windowSec: Int = 30
 ) {
     private data class Bucket(var sec: Long, var rx: Long, var tx: Long)
+
     private val buckets = Array(windowSec) { Bucket(0L, 0, 0) }
 
     @Synchronized

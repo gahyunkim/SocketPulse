@@ -5,7 +5,6 @@
 
     <depends>com.intellij.modules.platform</depends>
 
-    <!-- Android Studio에서만 존재할 수 있는 의존성은 optional로 -->
     <depends optional="true" config-file="android.xml">org.jetbrains.android</depends>
 
     <extensions defaultExtensionNs="com.intellij">

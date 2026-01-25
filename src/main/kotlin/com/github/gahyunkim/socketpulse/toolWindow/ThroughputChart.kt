@@ -18,10 +18,12 @@ class ThroughputChart(val store: ByteRateStore, val windowSec: Int) : JBPanel<Th
                 selectionEnd = e.x
                 repaint()
             }
+
             override fun mouseDragged(e: MouseEvent) {
                 selectionEnd = e.x
                 repaint()
             }
+
             override fun mouseReleased(e: MouseEvent) {
                 if (selectionStart != null && selectionEnd != null) {
                     val range = calculateTimeRange(selectionStart!!, selectionEnd!!)
