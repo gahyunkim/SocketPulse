@@ -30,7 +30,9 @@ dependencies {
     testImplementation(libs.opentest4j)
 
     intellijPlatform {
-        intellijIdea(providers.gradleProperty("platformVersion"))
+//        intellijIdea(providers.gradleProperty("platformVersion"))
+
+        androidStudio("2025.3.1.1")
 
         // K2 모드에서 Kotlin 분석을 수행하려면 필수인 플러그인들입니다.
         plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })

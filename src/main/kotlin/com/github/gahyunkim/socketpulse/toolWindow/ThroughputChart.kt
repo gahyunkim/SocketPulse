@@ -76,7 +76,7 @@ class ThroughputChart(val store: ByteRateStore, val windowSec: Int) : JBPanel<Th
             }
 
             g2.color = Color(64, 128, 255)
-            g2.setStroke(BasicStroke(2f))
+            g2.stroke = BasicStroke(2f)
             g2.drawPolyline(xPoints, yPoints, points)
 
             // RX 영역 채우기
@@ -91,7 +91,7 @@ class ThroughputChart(val store: ByteRateStore, val windowSec: Int) : JBPanel<Th
                 yTxPoints[i] = h - (txData[i] * h / maxVal).toInt()
             }
             g2.color = Color(150, 64, 255, 180)
-            g2.setStroke(BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0f, floatArrayOf(5f), 0f))
+            g2.stroke = BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0f, floatArrayOf(5f), 0f)
             g2.drawPolyline(xPoints, yTxPoints, points)
         }
 
