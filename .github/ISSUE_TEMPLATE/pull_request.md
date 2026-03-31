@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: bug template
+name: Pull request
+about: pull request template
 title: ''
-labels: bug
+labels: pull request
 assignees: gahyunkim
 
 ---
