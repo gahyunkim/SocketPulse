@@ -9,9 +9,18 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * 초별 RX/TX 누적 바이트를 그래프와 B/s 수치로 표시합니다.
+ * 현재 초의 값은 해당 초까지 누적된 값이며 전체 네트워크 트래픽 측정값은 아닙니다.
+ * @property store 표시할 데이터 저장소.
+ * @property windowSec 시간축 범위(초). 저장소의 구간과 동일하게 지정합니다.
+ */
 class ThroughputChart(val store: ByteRateStore, val windowSec: Int) : JBPanel<ThroughputChart>() {
     private var selectionStart: Int? = null
     private var selectionEnd: Int? = null
+    /**
+     * 드래그 종료 시 시작·종료 Unix 시각(밀리초)을 전달합니다. 현재 툴윈도우에서는 미연결입니다.
+     */
     var onRangeSelected: ((Long, Long) -> Unit)? = null
 
     init {
@@ -36,6 +45,9 @@ class ThroughputChart(val store: ByteRateStore, val windowSec: Int) : JBPanel<Th
         addMouseMotionListener(adapter)
     }
 
+    /**
+     * 좌우 좌표를 현재 시각 기준 시간 범위로 변환합니다. 컴포넌트 너비는 양수여야 합니다.
+     */
     private fun calculateTimeRange(x1: Int, x2: Int): Pair<Long, Long> {
         val startX = minOf(x1, x2).coerceAtLeast(0)
         val endX = maxOf(x1, x2).coerceAtMost(width)
@@ -45,6 +57,9 @@ class ThroughputChart(val store: ByteRateStore, val windowSec: Int) : JBPanel<Th
         return startTime to endTime
     }
 
+    /**
+     * 스냅샷 최대값을 기준으로 RX/TX, 시간축과 드래그 선택 영역을 그립니다.
+     */
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
         val g2 = g as Graphics2D
