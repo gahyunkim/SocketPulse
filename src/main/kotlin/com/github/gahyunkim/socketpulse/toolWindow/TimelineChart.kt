@@ -5,12 +5,22 @@ import java.awt.Graphics2D
 import javax.swing.JComponent
 import kotlin.math.max
 
+/**
+ * 이벤트별 발생 시각을 행별 세로선으로 그립니다. 오른쪽이 현재 시각입니다.
+ * 현재 툴윈도우에는 연결되어 있지 않습니다.
+ * @property store 이벤트 발생 시각 저장소.
+ * @property windowMs 표시 기간(밀리초). 양수로 지정합니다.
+ * @property rowsProvider 표시할 이벤트 이름을 행 순서대로 제공하는 함수.
+ */
 class TimelineChart(
     private val store: EventTimelineStore,
     private val windowMs: Long = 30_000L,
     private val rowsProvider: () -> List<String>, // 표시할 이벤트 row 목록
 ) : JComponent() {
 
+    /**
+     * 행을 균등하게 나누고 표시 기간 안의 발생 기록만 그립니다.
+     */
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
         val g2 = g as Graphics2D

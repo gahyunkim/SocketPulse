@@ -1,5 +1,9 @@
 # SocketPulse
 
+## 코드 문서
+
+[전체 파일 역할과 데이터 흐름](docs/CODE_GUIDE.md)을 참고하세요. Kotlin 클래스·함수의 한국어 KDoc은 IDE 호버 또는 Quick Documentation에서 확인할 수 있습니다.
+
 ![Build](https://github.com/gahyunkim/SocketPulse/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
