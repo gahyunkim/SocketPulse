@@ -3,9 +3,13 @@ package com.github.gahyunkim.socketpulse.toolWindow
 class ByteRateStore(
     private val windowSec: Int = 30
 ) {
-    private data class Bucket(var sec: Long, var rx: Long, var tx: Long)
+    // ThroughputChart에서 접근할 수 있도록 private 제거
+    data class Bucket(var sec: Long, var rx: Long, var tx: Long)
 
     private val buckets = Array(windowSec) { Bucket(0L, 0, 0) }
+
+    // ✅ 차트가 원본 배열에 접근할 수 있도록 추가
+    fun getRawBuckets(): Array<Bucket> = buckets
 
     @Synchronized
     fun addRx(bytes: Long, nowMs: Long = System.currentTimeMillis()) = add(bytes, true, nowMs)
